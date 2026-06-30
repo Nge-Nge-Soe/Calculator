@@ -1,0 +1,178 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Consolas', 'Courier New', Courier, monospace; 
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #05050a; 
+    overflow: hidden;
+}
+
+/* Base Box with Background Glow Animation */
+.calculator-box {
+    position: relative;
+    padding: 4px;
+    border-radius: 24px;
+    animation: floating 4s ease-in-out infinite; 
+}
+
+/* Glowing Aura Behind Calculator */
+.glow-bg {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(45deg, #ff0055, #00ffcc, #9900ff);
+    background-size: 200% 200%;
+    border-radius: 24px;
+    filter: blur(20px);
+    opacity: 0.4;
+    z-index: -1;
+    animation: gradientShift 6s ease infinite;
+}
+
+/* Calculator Container */
+.calculator-container {
+    width: 350px;
+    padding: 25px;
+    border-radius: 22px;
+    background: #0d0e15;
+    border: 2px solid #1f2335;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.6);
+}
+
+/* Display Screen with Neon Border */
+.screen {
+    width: 100%;
+    min-height: 110px;
+    background: #07080c;
+    border-radius: 14px;
+    padding: 20px;
+    margin-bottom: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    border: 1px solid rgba(0, 255, 204, 0.2);
+    box-shadow: 0 0 15px rgba(0, 255, 204, 0.05), inset 0 0 15px rgba(0,0,0,0.8);
+}
+
+.previous-operand {
+    color: #ff0055;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    opacity: 0.7;
+    text-shadow: 0 0 5px rgba(255, 0, 85, 0.5);
+}
+
+.current-operand {
+    color: #00ffcc;
+    font-size: 2.4rem;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+    transition: all 0.1s ease;
+}
+
+.screen-flash {
+    animation: flashEffect 0.15s ease-out;
+}
+
+/* Buttons Grid Layout */
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+}
+
+/* Button Base Style */
+.btn {
+    padding: 18px;
+    border: 1px solid #1a1c28;
+    border-radius: 12px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    cursor: pointer;
+    color: #a9b1d6;
+    background: #161824;
+    box-shadow: 3px 3px 5px rgba(0,0,0,0.5), -1px -1px 3px rgba(255,255,255,0.02);
+    transition: all 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Hover & Active Effects for all buttons */
+.btn:hover {
+    color: #ffffff;
+    background: #1f2335;
+    border-color: #3b4261;
+    transform: translateY(-2px);
+}
+
+.btn:active {
+    transform: scale(0.92); 
+}
+
+.col-2 {
+    grid-column: span 2;
+}
+
+/* Neon Theme Operator Keys */
+.operator {
+    color: #9900ff;
+    text-shadow: 0 0 8px rgba(153, 0, 255, 0.6);
+    border-color: rgba(153, 0, 255, 0.2);
+}
+.operator:hover {
+    background: rgba(153, 0, 255, 0.15);
+    border-color: #9900ff;
+    box-shadow: 0 0 12px rgba(153, 0, 255, 0.4);
+}
+
+/* Neon Theme Clear/Del Keys */
+.clear, .delete {
+    color: #ff0055;
+    text-shadow: 0 0 8px rgba(255, 0, 85, 0.6);
+    border-color: rgba(255, 0, 85, 0.2);
+}
+.clear:hover, .delete:hover {
+    background: rgba(255, 0, 85, 0.15);
+    border-color: #ff0055;
+    box-shadow: 0 0 12px rgba(255, 0, 85, 0.4);
+}
+
+/* Neon Theme Equal Key */
+.equal {
+    background: #00ffcc;
+    color: #05050a;
+    border-color: #00ffcc;
+    box-shadow: 0 0 15px rgba(0, 255, 204, 0.4);
+}
+.equal:hover {
+    background: #ffffff;
+    border-color: #ffffff;
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.8);
+    transform: translateY(-3px) scale(1.02);
+}
+
+/* --- ANIMATIONS KEYFRAMES --- */
+
+/* 1. Floating Animation for whole Calculator */
+@keyframes floating {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+}
+
+/* 2. RGB Background Aura Shift */
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* 3. Screen Numbers Flash Animation */
+@keyframes flashEffect {
+    0% { opacity: 0.3; transform: scale(0.98); }
+    100% { opacity: 1; transform: scale(1); }
+}
